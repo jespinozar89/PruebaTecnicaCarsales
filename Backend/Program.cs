@@ -31,7 +31,7 @@ builder.Services.AddSwaggerGen(options =>
         Contact = new OpenApiContact
         {
             Name = "Javier desarrollador FullStack",
-            Url = new Uri("https://github.com/jespinozar89/PruebaTecnicaCarsales/tree/main/Backend")
+            Url = new Uri("https://github.com/jespinozar89/PruebaTecnicaCarsales/")
         }
     });
 });
