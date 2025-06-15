@@ -1,0 +1,32 @@
+<div class="container medio-ancho fondo-gris">
+  <h1>Lista de Personajes</h1>
+  <hr>
+  <p>Esta es una lista de personajes obtenida desde la API de Rick and Morty.</p>
+
+  <div class="character-list">
+    <table class="tabla-minimalista">
+      <thead>
+        <tr>
+          <th>Personaje</th>
+          <th>Nombre</th>
+          <th>Estado</th>
+          <th>Especie</th>
+          <th>Género</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let character of characters$ | async">
+          <td>
+            <div class="avatar-contenedor">
+              <img class="avatar" [src]="character.image">
+            </div>
+          </td>
+          <td>{{ character.name }}</td>
+          <td>{{ character.status }}</td>
+          <td>{{ character.species }}</td>
+          <td>{{ character.gender }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
