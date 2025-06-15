@@ -2,6 +2,7 @@
   display: flex;
   gap: 1.5rem;
   padding: 1rem;
+  border-radius: 12px;
   background-color: #f3f3f3;
 }
 
@@ -13,4 +14,8 @@ a {
 a.active {
   font-weight: bold;
   color: #007acc;
+}
+
+.container {
+  padding: 0 1rem;
 }
