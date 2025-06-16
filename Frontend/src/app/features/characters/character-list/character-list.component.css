@@ -34,6 +34,39 @@
   transition: background-color 0.2s ease-in-out;
 }
 
+/* Estilos boton ver mas de la tabla */
+.icono-detalle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #333;
+}
+
+
+/* Estilos paginacion botones */
+.paginacion-controles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.paginacion-controles button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.paginacion-controles button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
 /* Estilos para los enlaces dentro de la tabla */
 .avatar {
   width: 40px;

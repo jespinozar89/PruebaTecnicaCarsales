@@ -1,0 +1,14 @@
+<div class="busqueda-container">
+  <form>
+    <input
+      type="text"
+      [(ngModel)]="nombre"
+      name="nombre"
+      placeholder="Buscar personaje por nombre..."
+    />
+    <button type="submit" (click)="searchCharacters()">🔍 Buscar</button>
+    <button type="submit" (click)="clearSearch()">✨ Limpiar</button>
+  </form>
+</div>
+
+

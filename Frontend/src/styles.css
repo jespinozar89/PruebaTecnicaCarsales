@@ -1,11 +1,14 @@
-.medio-ancho {
+.estilo-general{
   width: 70%;
   margin: auto;
-}
-
-.fondo-gris {
   background-color: #f6f8fa;
   padding: 1rem;
   border-radius: 1rem;
   margin-top: 1rem;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
 }

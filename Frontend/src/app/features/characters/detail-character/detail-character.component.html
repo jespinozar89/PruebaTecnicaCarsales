@@ -1,0 +1,28 @@
+<div class="container estilo-general">
+  <div *ngIf="character$ | async as character" class="character-card">
+    <h2 class="title">
+      {{ character.name }}
+    </h2>
+    <hr>
+    @defer {
+    <div class="header">
+      <ul>
+        <li><img [src]="character.image" [alt]="character.name" /></li>
+        <li><button (click)="goBack()">⬅️ Volver</button></li>
+      </ul>
+      <ul>
+        <li><strong>ID:</strong> {{ character.id }}</li>
+        <li><strong>Estado:</strong> {{ character.status }}</li>
+        <li><strong>Especie:</strong> {{ character.species }}</li>
+        <li *ngIf="character.type"><strong>Tipo:</strong> {{ character.type }}</li>
+        <li><strong>Género:</strong> {{ character.gender }}</li>
+        <li><strong>Origen:</strong> {{ character.originName }}</li>
+        <li><strong>Ubicación:</strong> {{ character.locationName }}</li>
+        <li><strong>Creado:</strong> {{ character.created | date:'medium' }}</li>
+      </ul>
+    </div>
+    } @placeholder {
+    <p style="padding: 1rem">Cargando datos del personaje...</p>
+    }
+  </div>
+</div>

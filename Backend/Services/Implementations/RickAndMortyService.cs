@@ -10,7 +10,7 @@ namespace Backend.Services.Implementations
         private readonly HttpClient _httpClient;
         private readonly string _baseUrl;
 
-        public RickAndMortyService(HttpClient httpClient,  IOptions<ApiSettings> config)
+        public RickAndMortyService(HttpClient httpClient, IOptions<ApiSettings> config)
         {
             _httpClient = httpClient;
             _baseUrl = config.Value.RickAndMortyBaseUrl;
@@ -29,8 +29,16 @@ namespace Backend.Services.Implementations
         }
 
         public async Task<List<Character>> GetCharactersAsync(int page = 1)
-        {   
+        {
             string endpoint = $"{_baseUrl}?page={page}";
+
+            var response = await _httpClient.GetFromJsonAsync<CharacterResponse>(endpoint);
+            return response.Results;
+        }
+        
+        public async Task<List<Character>> GetCharactersByNameAsync(string name)
+        {
+            string endpoint = $"{_baseUrl}?name={name}";
 
             var response = await _httpClient.GetFromJsonAsync<CharacterResponse>(endpoint);
             return response.Results;

@@ -2,69 +2,49 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Character } from '../models/character.model';
 import { CommonModule } from '@angular/common';
+import { CharacterService } from '../services/character.service';
+import { RouterModule } from '@angular/router';
+import { CharacterSearchComponent } from "../components/character-search/character-search.component";
 
 @Component({
   selector: 'app-character-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, CharacterSearchComponent],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.css'
 })
 export class CharacterListComponent implements OnInit {
-  // Usamos un observable para aprovechar el async pipe en la plantilla
-  characters$!: Observable<Character[]>;
 
-  constructor() {}
+  characters$!: Observable<Character[]>;
+  currentPage: number = 1;
+
+  constructor(private characterService: CharacterService) { }
 
   ngOnInit(): void {
-    // Creamos datos falsos de acuerdo al modelo Character
-    const fakeCharacters: Character[] = [
-      {
-        id: 1,
-        name: 'Rick Sanchez',
-        status: 'Alive',
-        species: 'Human',
-        type: '',
-        gender: 'Male',
-        originName: 'Earth (C-137)',
-        locationName: 'Earth (Replacement Dimension)',
-        image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-        episode: ['https://rickandmortyapi.com/api/episode/1', 'https://rickandmortyapi.com/api/episode/2'],
-        url: 'https://rickandmortyapi.com/api/character/1',
-        created: '2017-11-04T18:48:46.250Z'
-      },
-      {
-        id: 2,
-        name: 'Morty Smith',
-        status: 'Alive',
-        species: 'Human',
-        type: '',
-        gender: 'Male',
-        originName: 'Earth (C-137)',
-        locationName: 'Earth (Replacement Dimension)',
-        image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
-        episode: ['https://rickandmortyapi.com/api/episode/1', 'https://rickandmortyapi.com/api/episode/2'],
-        url: 'https://rickandmortyapi.com/api/character/2',
-        created: '2017-11-04T18:50:21.651Z'
-      },
-      {
-        id: 3,
-        name: 'Summer Smith',
-        status: 'Alive',
-        species: 'Human',
-        type: '',
-        gender: 'Female',
-        originName: 'Earth (Replacement Dimension)',
-        locationName: 'Earth (Replacement Dimension)',
-        image: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg',
-        episode: ['https://rickandmortyapi.com/api/episode/6', 'https://rickandmortyapi.com/api/episode/7'],
-        url: 'https://rickandmortyapi.com/api/character/3',
-        created: '2017-11-04T19:09:56.428Z'
-      }
-    ];
-
-    // Asignamos el observable con los datos falsos usando of()
-    this.characters$ = of(fakeCharacters);
+    this.loadCharacters();
   }
 
+  actualizarTabla(lista: Character[]) {
+    console.log('Actualizando tabla con la lista de personajes:', lista);
+
+    if (!lista || lista.length === 0) this.loadCharacters();
+    else this.characters$ = of(lista);
+
+  }
+
+  private loadCharacters(): void {
+    this.characters$ = this.characterService.getAllCharacters(this.currentPage);
+  }
+
+  nextPage() {
+    this.currentPage++;
+    this.loadCharacters();
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadCharacters();
+    }
+  }
 }

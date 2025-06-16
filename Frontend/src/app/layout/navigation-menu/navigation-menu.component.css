@@ -6,6 +6,11 @@
   background-color: #f3f3f3;
 }
 
+.nav-logo {
+  width: 30px;
+  height: auto;
+}
+
 a {
   text-decoration: none;
   color: #2c3e50;

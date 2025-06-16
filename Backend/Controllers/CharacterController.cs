@@ -102,5 +102,44 @@ namespace Backend.Controllers
             }
 
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> GetCharactersByName([FromQuery] string name)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(name)) return BadRequest("El nombre no puede estar vacío.");
+
+                var characters = await _rickAndMortyService.GetCharactersByNameAsync(name);
+                if (characters == null || !characters.Any()) return NotFound($"No se encontraron personajes con el nombre '{name}'.");
+
+                // Mapear los datos de la entidad a DTO
+                var characterDto = characters.Select(c => new CharacterDTO
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Status = c.Status,
+                    Species = c.Species,
+                    Type = c.Type,
+                    Gender = c.Gender,
+                    OriginName = c.Origin?.Name ?? string.Empty,
+                    LocationName = c.Location?.Name ?? string.Empty,
+                    Image = c.Image,
+                    Created = c.Created
+
+                }
+                ).ToList();
+
+                return Ok(characterDto);
+            }
+            catch (HttpRequestException httpEx)
+            {
+                return StatusCode(500, $"Error al comunicarse con el servicio externo: {httpEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error al procesar la solicitud: {ex.Message}");
+            }
+        }
     }
 }

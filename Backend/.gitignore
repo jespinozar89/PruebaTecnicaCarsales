@@ -1,0 +1,46 @@
+# Archivos generados por Visual Studio Code
+.vscode/
+
+# Build y publicación
+bin/
+obj/
+out/
+publish/
+
+# Archivos de configuración local y secretos
+*.user
+*.vspscc
+*.suo
+*.cache
+*.pdb
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.bak
+
+# Paquetes NuGet
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# Directorios del sistema
+Thumbs.db
+Desktop.ini
+
+# Sistema operativo
+.DS_Store
+
+# Dotnet-specific
+**/TestResults/
+**/appsettings.Development.json
+**/appsettings.Local.json
+.env
+
+# Rider
+.idea/
+

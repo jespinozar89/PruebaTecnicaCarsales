@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-navigation-menu',
@@ -11,4 +12,5 @@ import { RouterModule } from '@angular/router';
 })
 export class NavigationMenuComponent {
 
+  logoPath = environment.logoPath;
 }
