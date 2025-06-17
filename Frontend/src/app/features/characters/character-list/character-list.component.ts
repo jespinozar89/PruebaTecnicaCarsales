@@ -33,7 +33,16 @@ export class CharacterListComponent implements OnInit {
   }
 
   private loadCharacters(): void {
-    this.characters$ = this.characterService.getAllCharacters(this.currentPage);
+
+    this.characterService.getAllCharacters(this.currentPage)
+    .subscribe({
+      next: (data) => {
+        this.characters$ = of(data);
+      },
+      error: () => {
+        this.currentPage--;
+      }
+    });
   }
 
   nextPage() {

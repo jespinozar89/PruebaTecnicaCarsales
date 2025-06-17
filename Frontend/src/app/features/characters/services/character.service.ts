@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root'
 })
 export class CharacterService {
-  private apiUrl = `${environment.apiUrl}`;
+  private apiUrl = `${environment.apiCharacterUrl}`;
 
   constructor(private http: HttpClient) { }
 

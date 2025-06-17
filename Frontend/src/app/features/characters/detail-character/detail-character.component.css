@@ -1,3 +1,4 @@
+/* Estilos para el contenedor de la lista de personajes */
 .character-card {
   max-width: 700px;
   margin: auto;
@@ -33,4 +34,3 @@ ul li button {
   display: block;
   margin: 0 auto;
 }
-

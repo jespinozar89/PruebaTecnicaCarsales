@@ -8,5 +8,6 @@ namespace Backend.Configurations
     public class ApiSettings
     {
         public string RickAndMortyBaseUrl { get; set; }
+        public string EpisodeBaseUrl { get; set; }
     }
 }

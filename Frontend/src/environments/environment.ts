@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:5075/api/Character',
+  apiCharacterUrl: 'http://localhost:5075/api/Character',
+  apiEpisodesUrl: 'http://localhost:5075/api/Episode',
   logoPath: 'assets/images/logo-dev.png'
 };

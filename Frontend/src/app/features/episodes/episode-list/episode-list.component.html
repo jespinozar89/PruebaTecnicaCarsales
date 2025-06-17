@@ -1,0 +1,32 @@
+<div class="container estilo-general">
+  <h1 class="title">Lista de Episodios</h1>
+  <hr>
+  <p>Esta es una lista de Episodios obtenida desde la API de Rick and Morty.</p>
+  <table class="tabla-minimalista">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha de emisión</th>
+          <th>Codigo Episodio</th>
+          <th>Personajes por Episodio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let episode of episodes$ | async">
+          <td>{{episode.name}}</td>
+          <td>{{episode.airDate}}</td>
+          <td>{{episode.episodeCode}}</td>
+          <td>
+            <button class="icono-detalle" (click)="showCharacters(episode.characterIds,episode.name)">
+              🔍
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="paginacion-controles">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">⬅️ Anterior</button>
+    <span>Página {{ currentPage }}</span>
+    <button (click)="nextPage()">➡️ Siguiente</button>
+  </div>
+</div>

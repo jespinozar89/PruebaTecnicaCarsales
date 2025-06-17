@@ -31,6 +31,25 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'episodes',
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./features/episodes/episode-list/episode-list.component').then(
+            m => m.EpisodeListComponent
+          )
+      },
+      {
+        path: 'detail',
+        loadComponent: () =>
+          import('./features/episodes/characters-by-episode-list/characters-by-episode-list.component').then(
+            m => m.CharactersByEpisodeListComponent
+          )
+      }
+    ]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
