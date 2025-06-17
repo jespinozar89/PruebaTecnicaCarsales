@@ -13,7 +13,7 @@
 
 ### 🧬 1. Clonar el repositorio
 
-Asegúrate de tener Git instalado. Si no lo tenés, podés descargarlo desde [git-scm.com](https://git-scm.com/).
+Asegúrate de tener Git instalado. Si no lo tenés, puedes descargarlo desde [git-scm.com](https://git-scm.com/).
 
 Luego, ejecutá en la terminal:
 
@@ -76,8 +76,8 @@ Esto creará una carpeta llamada `PruebaTecnicaCarsales` con todo el contenido d
 - **Listado de personajes** (`/characters`): Tabla paginada con buscador y botones de detalle
 - **Detalle de personaje** (`/characters/:id`): Vista con datos completos del personaje
 - **Búsqueda de personajes**: Campo de búsqueda reactivo con filtro por nombre
-- **Listado de episodios (`/episodes`)**: Tabla paginada de episodios con nombre,fecha de emisión, código y botón de ver más.
-- **Detalle de episodio (`/episodes/detail`)**: Muestra nombre episodio , personajes asociados al episodio y botón para detalle de cada personaje.
+- **Listado de episodios** (`/episodes`): Tabla paginada de episodios con nombre,fecha de emisión, código y botón de ver más.
+- **Detalle de episodio** (`/episodes/detail`): Muestra nombre episodio , personajes asociados al episodio y botón para detalle de cada personaje.
 - **Paginación**: Navegación por página de resultados
 - **Diseño limpio y minimalista** sin frameworks
 
@@ -151,7 +151,7 @@ launchSettings:
    "environmentVariables": {
       "ASPNETCORE_ENVIRONMENT": "Development"
    }
-   },
+},
 ```
 
 appsettings.Development.json
