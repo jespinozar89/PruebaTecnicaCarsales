@@ -8,7 +8,7 @@ import { Character } from '../../characters/models/character.model';
 @Component({
   selector: 'app-characters-by-episode-list',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './characters-by-episode-list.component.html',
   styleUrl: './characters-by-episode-list.component.css'
 })
@@ -17,6 +17,7 @@ export class CharactersByEpisodeListComponent {
   characterIds: number[] = [];
   episodeName: string = '';
   characters: Character[] = [];
+  isReady = false;
 
   constructor(
     private characterService: CharacterService,
@@ -30,10 +31,22 @@ export class CharactersByEpisodeListComponent {
     this.characterIds = characterIds ? characterIds.split(',').map(n => +n) : [];
     this.episodeName = episodeName ? episodeName : '';
 
+    let loaded = 0;
+    const total = this.characterIds.length;
+
+    if (total === 0) {
+      this.isReady = true;
+      return;
+    }
+
     this.characterIds.forEach(id => {
       this.getCharacterById(id).subscribe({
         next: (character) => {
           this.characters.push(character);
+          loaded++;
+          if (loaded === total) {
+            this.isReady = true;
+          }
         },
         error: (error) => {
           console.error('Error al obtener el personaje con ID:', id, error);
@@ -48,7 +61,7 @@ export class CharactersByEpisodeListComponent {
     return this.characterService.getCharacterById(id);
   }
 
-   goBack(): void {
+  goBack(): void {
     this.location.back();
   }
 }

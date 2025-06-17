@@ -2,10 +2,14 @@
   <button (click)="goBack()">⬅️ Volver</button>
   <h1 class="title">Personajes episodio {{episodeName}}</h1>
   <hr>
+  @defer (when isReady) {
   <div class="fila">
     <div class="columna" *ngFor="let character of characters">
       <img [src]="character.image" alt="Avatar" class="imagen-circular" />
       <button [routerLink]="['/characters/', character.id]">{{character.name}}</button>
     </div>
   </div>
+  } @placeholder {
+  <p style="padding: 1rem; font-style: italic;">Cargando personajes...</p>
+}
 </div>

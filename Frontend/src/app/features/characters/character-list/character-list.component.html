@@ -10,7 +10,7 @@
   <p style="padding: 1rem; font-style: italic;">Cargando buscador...</p>
   }
   <div>
-    @defer {
+    @defer (on viewport){
     <table class="tabla-minimalista">
       <thead>
         <tr>
@@ -42,7 +42,7 @@
       </tbody>
     </table>
     }@placeholder {
-    <p style="padding: 1rem; font-style: italic;">Cargando buscador...</p>
+    <p style="padding: 1rem; font-style: italic;">Cargando tabla...</p>
     }
     <div class="paginacion-controles">
       <button (click)="previousPage()" [disabled]="currentPage === 1">⬅️ Anterior</button>
