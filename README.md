@@ -76,6 +76,8 @@ Esto creará una carpeta llamada `PruebaTecnicaCarsales` con todo el contenido d
 - **Listado de personajes** (`/characters`): Tabla paginada con buscador y botones de detalle
 - **Detalle de personaje** (`/characters/:id`): Vista con datos completos del personaje
 - **Búsqueda de personajes**: Campo de búsqueda reactivo con filtro por nombre
+- **Listado de episodios (`/episodes`)**: Tabla paginada de episodios con nombre,fecha de emisión, código y botón de ver más.
+- **Detalle de episodio (`/episodes/detail`)**: Muestra nombre episodio , personajes asociados al episodio y botón para detalle de cada personaje.
 - **Paginación**: Navegación por página de resultados
 - **Diseño limpio y minimalista** sin frameworks
 
@@ -91,6 +93,11 @@ Frontend/
   │   │   ├── detail-character/
   │   │   ├── models/
   │   │   └── services/
+  │   ├── episodes/
+  │   │   ├── episode-list/
+  │   │   ├── characters-by-episode-list/
+  │   │   ├── models/
+  │   │   └── services/
   │   └── home/
   ├── layout/
   └── app.routes.ts
@@ -98,23 +105,62 @@ Frontend/
 Backend/
   └── Controllers/
       └── CharacterController.cs
+      └── EpisodeController.cs
 ```
 
 ---
 
 ## 🌍 Variables de entorno
 
+### Frontend
+
 La URL de la API está centralizada en el archivo:  
 ```ts
 src/environments/environment.ts
 ```
 
-Ejemplo:
+environment:
 
 ```ts
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:5075/api/Character',
-  logoPath: 'logo.png'
+  apiCharacterUrl: 'http://localhost:5075/api/Character',
+  apiEpisodesUrl: 'http://localhost:5075/api/Episode',
+  logoPath: 'assets/images/logo-dev.png'
 };
+```
+
+### Backend
+
+Las URLs base de la API están centralizadas en los siguientes archivos de configuración: 
+```ts
+/Properties/launchSettings.json
+appsettings.Development.json
+```
+
+launchSettings:
+
+```ts
+"profiles": {
+   "http": {
+   "commandName": "Project",
+   "dotnetRunMessages": true,
+   "launchBrowser": true,
+   "launchUrl": "swagger",
+   "applicationUrl": "http://localhost:5075",
+   "environmentVariables": {
+      "ASPNETCORE_ENVIRONMENT": "Development"
+   }
+   },
+```
+
+appsettings.Development.json
+
+```ts
+{
+  "ApiSettings": {
+    "RickAndMortyBaseUrl": "https://rickandmortyapi.com/api/character",
+    "EpisodeBaseUrl": "https://rickandmortyapi.com/api/episode"
+  },
+}
 ```
